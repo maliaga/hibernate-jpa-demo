@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "TBL_EMPLEADO")
-public class Empleado implements Serializable{
+public class Employee implements Serializable{
 
     @Id
     @Column(name = "COD_EMPLEADO")
@@ -27,10 +27,10 @@ public class Empleado implements Serializable{
     @Column(name = "FECHA_NACIMIENTO")
     private Date fechaNacimineto;
 
-    public Empleado() {
+    public Employee() {
     }
 
-    public Empleado(Long codigo, String apellidos, String nombre, Date fechaNacimineto) {
+    public Employee(Long codigo, String apellidos, String nombre, Date fechaNacimineto) {
         this.codigo = codigo;
         this.apellidos = apellidos;
         this.nombre = nombre;

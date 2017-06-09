@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by maliaga on 6/8/17.
  */
-public class EmpleadoTest {
+public class EmployeeTest {
 
     private static EntityManager manager;
     private static EntityManagerFactory factory;
@@ -27,17 +27,17 @@ public class EmpleadoTest {
         manager.persist(e);
         manager.getTransaction().commit();
 
-        imprimeTodo();
+        printAll();
 
     }
 
-    public static void imprimeTodo(){
-        List<Employee> empleadoList = manager.createQuery("FROM Employee").getResultList();
+    public static void printAll(){
+        List<Employee> employeeList = manager.createQuery("FROM Employee").getResultList();
 
-        System.out.println("La cantidad de empleados es : " + empleadoList.size());
+        System.out.println("La cantidad de empleados es : " + employeeList.size());
 
         for (Employee e :
-                empleadoList) {
+                employeeList) {
             System.out.println(e.toString());
         }
     }
