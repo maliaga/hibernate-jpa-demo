@@ -21,14 +21,25 @@ public class EmployeeTest {
         factory = Persistence.createEntityManagerFactory("Persistencia");
         manager = factory.createEntityManager();
 
+        insertInitial();
+        printAll();
+
+        manager.getTransaction().begin();
+        Employee e = manager.find(Employee.class, 1L);
+        e.setNombre("RAFAEL");
+        e.setApellidos("ALIAGA");
+        manager.getTransaction().commit();
+
+        printAll();
+
+    }
+
+    private static void insertInitial() {
         Employee e = new Employee(1L, "Aliaga", "Mario", new GregorianCalendar(1979, 11, 7).getTime());
 
         manager.getTransaction().begin();
         manager.persist(e);
         manager.getTransaction().commit();
-
-        printAll();
-
     }
 
     public static void printAll(){
