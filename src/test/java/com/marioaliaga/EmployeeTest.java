@@ -5,6 +5,8 @@ import com.marioaliaga.modelo.Employee;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -54,7 +56,7 @@ public class EmployeeTest {
     private static void insertInitial() {
         EntityManager manager = factory.createEntityManager();
 
-        Employee e = new Employee(1L, "Aliaga", "Mario", new GregorianCalendar(1979, 11, 7).getTime());
+        Employee e = new Employee(1L, "Aliaga", "Mario", LocalDate.of(1979, Month.NOVEMBER, 7));
 
         manager.getTransaction().begin();
         manager.persist(e);
