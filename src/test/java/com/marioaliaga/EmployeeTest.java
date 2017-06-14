@@ -31,6 +31,24 @@ public class EmployeeTest {
         printAll();
         manager.close();
 
+        manager = factory.createEntityManager();
+        manager.getTransaction().begin();
+        e = manager.merge(e);
+        e.setNombre("Rafita");
+        manager.getTransaction().commit();
+        manager.close();
+
+        printAll();
+
+        manager = factory.createEntityManager();
+        manager.getTransaction().begin();
+        e = manager.merge(e);
+        manager.remove(e);
+        manager.getTransaction().commit();
+        manager.close();
+
+        printAll();
+
     }
 
     private static void insertInitial() {
