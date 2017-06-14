@@ -1,9 +1,6 @@
 package com.marioaliaga.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -26,6 +23,10 @@ public class Employee implements Serializable{
 
     @Column(name = "FECHA_NACIMIENTO")
     private LocalDate fechaNacimineto;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_ADDRESS")
+    private Address address;
 
     public Employee() {
     }
@@ -69,13 +70,22 @@ public class Employee implements Serializable{
         this.fechaNacimineto = fechaNacimineto;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
-        return "Empleado{" +
+        return "Employee{" +
                 "codigo=" + codigo +
                 ", apellidos='" + apellidos + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", fechaNacimineto=" + fechaNacimineto +
+                ", address=" + address +
                 '}';
     }
 
