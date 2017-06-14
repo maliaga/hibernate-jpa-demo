@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Created by maliaga on 6/8/17.
@@ -25,12 +25,12 @@ public class Employee implements Serializable{
     private String nombre;
 
     @Column(name = "FECHA_NACIMIENTO")
-    private Date fechaNacimineto;
+    private LocalDate fechaNacimineto;
 
     public Employee() {
     }
 
-    public Employee(Long codigo, String apellidos, String nombre, Date fechaNacimineto) {
+    public Employee(Long codigo, String apellidos, String nombre, LocalDate fechaNacimineto) {
         this.codigo = codigo;
         this.apellidos = apellidos;
         this.nombre = nombre;
@@ -61,11 +61,11 @@ public class Employee implements Serializable{
         this.nombre = nombre;
     }
 
-    public Date getFechaNacimineto() {
+    public LocalDate getFechaNacimineto() {
         return fechaNacimineto;
     }
 
-    public void setFechaNacimineto(Date fechaNacimineto) {
+    public void setFechaNacimineto(LocalDate fechaNacimineto) {
         this.fechaNacimineto = fechaNacimineto;
     }
 
