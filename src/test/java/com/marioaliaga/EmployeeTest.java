@@ -13,13 +13,11 @@ import java.util.List;
  */
 public class EmployeeTest {
 
-    private static EntityManager manager;
-    private static EntityManagerFactory factory;
+    private static EntityManagerFactory factory  = Persistence.createEntityManagerFactory("Persistencia");
 
     public static void main(String ... args){
 
-        factory = Persistence.createEntityManagerFactory("Persistencia");
-        manager = factory.createEntityManager();
+       EntityManager manager = factory.createEntityManager();
 
         insertInitial();
         printAll();
@@ -31,18 +29,43 @@ public class EmployeeTest {
         manager.getTransaction().commit();
 
         printAll();
+        manager.close();
+
+        manager = factory.createEntityManager();
+        manager.getTransaction().begin();
+        e = manager.merge(e);
+        e.setNombre("Rafita");
+        manager.getTransaction().commit();
+        manager.close();
+
+        printAll();
+
+        manager = factory.createEntityManager();
+        manager.getTransaction().begin();
+        e = manager.merge(e);
+        manager.remove(e);
+        manager.getTransaction().commit();
+        manager.close();
+
+        printAll();
 
     }
 
     private static void insertInitial() {
+        EntityManager manager = factory.createEntityManager();
+
         Employee e = new Employee(1L, "Aliaga", "Mario", new GregorianCalendar(1979, 11, 7).getTime());
 
         manager.getTransaction().begin();
         manager.persist(e);
         manager.getTransaction().commit();
+        manager.close();
+
     }
 
     public static void printAll(){
+        EntityManager manager = factory.createEntityManager();
+
         List<Employee> employeeList = manager.createQuery("FROM Employee").getResultList();
 
         System.out.println("La cantidad de empleados es : " + employeeList.size());
@@ -51,5 +74,7 @@ public class EmployeeTest {
                 employeeList) {
             System.out.println(e.toString());
         }
+
+        manager.close();
     }
 }
