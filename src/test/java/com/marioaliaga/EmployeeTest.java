@@ -1,5 +1,6 @@
 package com.marioaliaga;
 
+import com.marioaliaga.modelo.Address;
 import com.marioaliaga.modelo.Employee;
 
 import javax.persistence.EntityManager;
@@ -26,6 +27,7 @@ public class EmployeeTest {
 
         manager.getTransaction().begin();
         Employee e = manager.find(Employee.class, 1L);
+        e.setAddress(new Address(15L,"False street 123", "Springfield", "Springfield", "EEUU"));
         e.setNombre("RAFAEL");
         e.setApellidos("ALIAGA");
         manager.getTransaction().commit();
